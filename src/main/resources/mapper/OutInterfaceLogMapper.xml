@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyb.tjpkg.mapper.OutInterfaceLogMapper">
+    <resultMap id="BaseResultMap" type="com.zyb.tjpkg.model.OutInterfaceLog">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="serial_number" jdbcType="VARCHAR" property="serialNumber"/>
+        <result column="success_flag" jdbcType="INTEGER" property="successFlag"/>
+        <result column="pay_flag" jdbcType="INTEGER" property="payFlag"/>
+        <result column="interface_name" jdbcType="VARCHAR" property="interfaceName"/>
+        <result column="interface_type" jdbcType="VARCHAR" property="interfaceType"/>
+        <result column="business_num" jdbcType="VARCHAR" property="businessNum"/>
+        <result column="request_time" jdbcType="TIMESTAMP" property="requestTime"/>
+        <result column="response_time" jdbcType="TIMESTAMP" property="responseTime"/>
+        <result column="call_time" jdbcType="INTEGER" property="callTime"/>
+        <result column="params" jdbcType="LONGVARCHAR" property="params"/>
+        <result column="result" jdbcType="LONGVARCHAR" property="result"/>
+    </resultMap>
+    <select id="getData" resultType="string">
+  	select result from upsylsys
+  	WHERE interface_name = #{interfaceName} and interface_type = #{interfaceType}
+  	limit 1
+  </select>
+
+    <select id="qLi" resultMap="BaseResultMap">
+    select serial_number,params,result,create_time from upsylsys
+    WHERE interface_type = #{interfaceType,jdbcType=VARCHAR}
+    AND params like CONCAT('%"',#{param,jdbcType=VARCHAR},'"%')
+    ORDER BY serial_number DESC
+  </select>
+    <select id="tjGzt" resultMap="BaseResultMap">
+        select * from upsylsys
+        WHERE interface_type = 'querySingle'
+        AND create_time &gt; #{st,jdbcType=VARCHAR}
+        AND create_time &lt; #{et,jdbcType=VARCHAR}
+    </select>
+
+    <select id="getAll" resultMap="BaseResultMap">
+        select * from upsylsys
+    </select>
+
+    <select id="delErrorStr" resultType="string">
+        select  params from upsylsys where result=#{error} and create_time like CONCAT('%',#{date},'%')
+    </select>
+    <select id="getInterfacePayUsage" resultType="int">
+    SELECT COUNT(id) AS payCount
+    FROM upsylsys
+    WHERE interface_name = #{interfaceName}
+	    AND YEAR(create_time) = #{year}
+	    AND MONTH(create_time) = #{month}
+	    AND pay_flag = 0
+	    AND success_flag = 0;
+    </select>
+    <select id="getInterfaceTotalUsage" resultType="int">
+    SELECT COUNT(id) AS totalCount
+    FROM upsylsys
+    WHERE interface_name = #{interfaceName}
+	    AND YEAR(create_time) = #{year}
+	    AND MONTH(create_time) = #{month}
+    </select>
+    <select id="getAllInterfaceUsageTotalByMonth" resultType="Map">
+    SELECT interface_name
+	    , CONCAT(YEAR(create_time), '-', MONTH(create_time)) AS durTime
+	    , COUNT(id) AS totalCount
+    FROM upsylsys
+    WHERE YEAR(create_time) = #{year}
+	    AND MONTH(create_time) = #{month}
+    GROUP BY interface_name
+    </select>
+    <select id="getAllInterfaceUsagePayByMonth" resultType="Map">
+    SELECT interface_name
+	    , CONCAT(YEAR(create_time), '-', MONTH(create_time)) AS durTime
+	    , COUNT(id) AS payCount
+    FROM upsylsys
+    WHERE YEAR(create_time) = #{year}
+	    AND MONTH(create_time) = #{month}
+	    AND success_flag=0
+	    AND pay_flag=0
+    GROUP BY interface_name
+    </select>
+</mapper>
