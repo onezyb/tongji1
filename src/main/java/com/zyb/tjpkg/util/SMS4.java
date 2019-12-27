@@ -474,36 +474,6 @@ public class SMS4 {
             str.append(key[a]).append(",");
         }
         System.out.println(str);
-//        String newString = "{\"errNum\":0,\"errMsg\":\"success\",\"timeStamps\":1534406463689,\"retData\":[{\"nsrsbh\":\"110108710927388\",\"ixnyhzh\":\"中国民生银行紫竹支行 0120014170022475\",\"mc\":\"航天信息股份有限公司\",\"ixndzdh\":\"北京市海淀区杏石口路甲18号 010-88896666\",\"tyshxydm\":\"91110000710927388B\"}]}"; // 明文
-////
-////        System.out.println("base64编码");
-////
-////        for (int i = 0; i < 10; i++) {
-////            String base64Str = SMS4.encodeSMS4toString(sh, newString);
-////            System.out.println(base64Str);
-////            Thread.sleep(5000L);
-////        }
-//
-//
-//        String base64Str = "vaH7ZL/+SHEA1sKK9/rGtbt8KiDyv3hm6vgg61LKdxk6qVLMzFoGz1FBGfPlcNjUTZt0k/OyAtoWaASRAkqkCMIZ8xaF8pnvF3sy4jCCng2X6j2qBqOfypAWHK7bIcGT10ycJpmq/rB48wdUFc0i/k3VzI6sZx9o4qtojUdxoNkn5DRsyD8LPoEAfi6lJPpq0wTQLp4eNo+V4blOKxlcRYm/Ht5BUnzn1uiG/3IQiHcM5Qk85QuunGF5fLy/M3NJUrsigJJVQgFJA4Oq4jaKS6rdRzZaT3wVCGL27mvzG6PqbcV3ZeJGgErioHjiII7s43uWUyFniAyTB4N1g9oiBuHIUi2gmS0eMKloe3LluCIMI7YZjUqOG/twr9/9i/PvRBlCPinmG2gkRZXzbC0GeA==";
-//        System.out.println(base64Str);
-//        String deOutStr = SMS4.decodeSMS4toString(sh, base64Str);
-//        System.out.println("\n解密结果(return String)：\n" + deOutStr);
-////
-//        //外部接口授权加解密密钥
-//        String key1 = "91110108MA001K7YXU";
-//        String aaCode = "{\"userName\":\"EdTC2GMYDEFUINWGGfHylQ==\",\"password\":\"EdTC2GMYDEFT54rjg7d6WUNKaq8kTMlS\"}";
-//        //{"userName":"EdTC2GMYDEFUINWGGfHylQ==","password":"EdTC2GMYDEFT54rjg7d6WUNKaq8kTMlS"}
-//        String aaEncode = SMS4.encodeSMS4toString(sh, "{\"authCode\":\"QKMZ9uwiTWAO5EL3qnIn\"}");
-//        System.out.println(aaEncode);
-////        String aaEncodeStr = "36Skd12ujL3XmnJnWks9ydpCkACOymoJwoXaKAEDa6C9lykzewP4dAKHTyRtTXf71w/zISRJM3/qGzlznU/T09s2Z4/1VxRk+ezylgFRqJcSkySO/I4oL7LE4C71Q33J";
-////        String aaEncodeStr = "rsBbHU85ntgI1Mla4SdaSIpoLP6wtWk2CRsu7/RkZVr34CKhvkOCtwMtvX+OQ+YXCzcsxDbZV5ctP2Z2xE0FFFp2l1qtBxwqltUDyJbCMemgkrBDAHzIFHcQ+R0FbyRo";
-//        String aaEncodeStr = "gTR7vUI+0jNN9tiyuZCSwA==";
-//        String decde1 = "ZBOwDpXsbBhcXHnd0qYkHoCbiPJiXo0xA6CvPYzq81Q=";
-//        System.out.println(SMS4.decodeSMS4toString(sh, aaEncodeStr));
-//        System.out.println(SMS4.decodeSMS4toString(sh, decde1));
-
-
         String encParamData = "4g1tsk58dzUYDaB2gXPZ0inoigYGA34gsNKcnFSjfKdrq02DM+3RNy5BAyyXWhlgrxqiRJElHjMHE2GGazN9B7nQsHO3aPT3DqwPktXwFW+8UISZlRsWb5pQdSDP3mOmqIlTs/Mq5qQ/1GflLK0hxW9rI6UHHyxC1G3EqFAL1JPsTMMWkxB0jFbRI/8xDBBRvEs6dGCB0PGr1jCqlP1Swr8VVKiAHwRgNazADhPEM+H3CNq+mqpM0eQ+xHQq5PLMfNAhUxPVf5tTrMoBYqiNEGSIDrjD+RrjQHdde4gmJDEQDyMVJqhnVrDSk0Lb9PlR";
 
         String deOutStr = SMS4.decodeSMS4toString(sh, encParamData);

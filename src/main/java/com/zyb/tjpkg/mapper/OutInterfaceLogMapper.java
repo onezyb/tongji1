@@ -12,6 +12,7 @@ import java.util.Map;
 public interface OutInterfaceLogMapper extends MyMapper<OutInterfaceLog> {
 
     List<OutInterfaceLog> getAll();
+
     /**
      * 关闭外部接口总开关，获取数据
      *
