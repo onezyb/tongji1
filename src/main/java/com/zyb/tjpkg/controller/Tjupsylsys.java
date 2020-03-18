@@ -5,10 +5,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.zyb.tjpkg.mapper.OutInterfaceLogMapper;
 import com.zyb.tjpkg.model.OutInterfaceLog;
 import com.zyb.tjpkg.util.SMS4;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 @RestController
 public class Tjupsylsys {
 
+    private Logger logger = LoggerFactory.getLogger(Tjupsylsys.class);
     @Autowired
     private OutInterfaceLogMapper upsylsysDao;
 
@@ -87,6 +89,24 @@ public class Tjupsylsys {
             // "name":"翟峥","sign":"f02ecdf17c03b226f1a789508229eb09","userName":"asrVz"}
             JSONObject jsb = JSON.parseObject(params);
             System.out.println(jsb.toJSONString());
+        }
+        br.close();
+        isr.close();
+        fis.close();
+    }
+
+    @RequestMapping(value = "tjtj")
+    @ResponseBody
+    public void tjFaces()throws IOException {
+        String path = "E:\\TEST\\test-files\\tj222.txt";//统计userName与接口对应
+        FileInputStream fis = new FileInputStream(path);
+        InputStreamReader isr = new InputStreamReader(fis, "UTF-8");
+        BufferedReader br = new BufferedReader(isr);
+        String orderId = "";
+        while ((orderId = br.readLine()) != null) {
+            String params = SMS4.decodeSMS4toString("91110108MA001K7YXU", orderId);
+            JSONObject jsb = JSON.parseObject(params);
+            logger.info(jsb.toJSONString());
         }
         br.close();
         isr.close();
