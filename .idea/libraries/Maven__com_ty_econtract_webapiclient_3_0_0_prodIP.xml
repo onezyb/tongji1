@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.ty.econtract:webapiclient:3.0.0.prodIP">
+    <CLASSES>
+      <root url="jar://$M2_REPO$/com/ty/econtract/webapiclient/3.0.0.prodIP/webapiclient-3.0.0.prodIP.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$M2_REPO$/com/ty/econtract/webapiclient/3.0.0.prodIP/webapiclient-3.0.0.prodIP-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$M2_REPO$/com/ty/econtract/webapiclient/3.0.0.prodIP/webapiclient-3.0.0.prodIP-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

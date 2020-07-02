@@ -115,7 +115,7 @@ public class FileUtil {
 		br.close();
 		isr.close();
 		fis.close();*/
-        List<Object> listDir = getDirs("E:\\BaiduPan\\Download\\周杰伦 - 全部专辑（无损或320K）");
+        List<Object> listDir = getDirs("E:\\BaiduPan\\Download\\林俊杰专辑歌曲合集");
         for (Object dir : listDir) {
             List<Object> files = getDirs((String) dir);
             for (Object file : files) {
@@ -128,7 +128,7 @@ public class FileUtil {
                         System.err.println(dir);
                         continue;
                     }
-                    copy(((File) file).getAbsolutePath(), "E:\\jayAll\\" + musicName);
+                    copy(((File) file).getAbsolutePath(), "E:\\jjAll\\" + musicName);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
